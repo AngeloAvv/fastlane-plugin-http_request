@@ -1,0 +1,17 @@
+lane :test do
+  response = http_request(
+    url: "https://httpbin.io/post",
+    method: "POST",
+    headers: { "Content-Type" => "application/json" },
+    body: {
+      app: "appName",
+      version: "1.0",
+      build: 123,
+      environment: "production"
+    },
+    verbose: true
+  )
+
+  UI.message("Webhook returned code: #{response[:code]}")
+  UI.message("Response: #{response[:body]}")
+end
